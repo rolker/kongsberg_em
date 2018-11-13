@@ -25,9 +25,10 @@ def sonar_listener():
                 pointCloud = PointCloud()
                 pointCloud.header.frame_id = 'mbes'
                 
-                year = int(sonar_data['date'][:4])
-                month = int(sonar_data['data'][4:6])
-                day = int(sonar_data['data'][6:8])
+                date_str = str(sonar_data['date'])
+                year = int(date_str[:4])
+                month = int(date_str[4:6])
+                day = int(date_str[6:8])
                 
                 timestamp = datetime.datetime(year, month, day)
                 timestamp += datetime.timedelta(seconds=float(sonar_data['time_of_day']))
