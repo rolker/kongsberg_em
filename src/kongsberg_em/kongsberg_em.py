@@ -4,9 +4,9 @@ import socket
 import struct
 
 class KongsbergEM:
-    def __init__(self):
+    def __init__(self,port=16112):
         self.insock = socket.socket(type=socket.SOCK_DGRAM)
-        self.insock.bind(('',16112))
+        self.insock.bind(('',port))
 
     def getPacket(self):
         data,addr = self.insock.recvfrom(10000)
@@ -30,7 +30,7 @@ class KongsbergEM:
                 #print 'beam count:',beam_count,'valid count:',valid_count
                 beams = []
                 for n in range(beam_count):
-                    z,x,y,qf,detect_info = struct.unpack('<fff2xBxB',data[36+20*n:36+20*n+17])
+                    z,y,x,qf,detect_info = struct.unpack('<fff2xBxB',data[36+20*n:36+20*n+17])
                     if detect_info < 16:
                         beams.append((x,y,z))
                 #print beams
