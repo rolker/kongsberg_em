@@ -41,8 +41,8 @@ def sonar_listener():
                 for xyz in sonar_data['beams']:
                     p = Point32()
                     p.x = xyz[0]
-                    p.y = xyz[1]
-                    p.z = xyz[2]
+                    p.y = -xyz[1]
+                    p.z = -xyz[2]
                     pointCloud.points.append(p)
                 
                 pub.publish(pointCloud)
