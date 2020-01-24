@@ -40,6 +40,7 @@ def sonar_listener():
                 
                 for xyz in sonar_data['beams']:
                     p = Point32()
+                    #Convert from fwd, stbd, down to ROS fwd, left, up
                     p.x = xyz[0]
                     p.y = -xyz[1]
                     p.z = -xyz[2]

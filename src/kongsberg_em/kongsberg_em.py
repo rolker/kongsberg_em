@@ -30,6 +30,8 @@ class KongsbergEM:
                 #print 'beam count:',beam_count,'valid count:',valid_count
                 beams = []
                 for n in range(beam_count):
+                    # From em_datagram_formats.pdf, P.125
+                    #The coordinates are given in the Vessel Coordinate System, where x is forward, y is starboard and z is downward.
                     z,y,x,qf,detect_info = struct.unpack('<fff2xBxB',data[36+20*n:36+20*n+17])
                     if detect_info < 16:
                         beams.append((x,y,z))
